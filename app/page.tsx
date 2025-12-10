@@ -244,15 +244,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen pb-16">
-      <main className="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-8 sm:gap-16 sm:px-6 sm:py-10 lg:gap-20 lg:px-0">
+    <div className="min-h-screen overflow-x-hidden pb-16">
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-5 py-8 sm:gap-16 sm:px-6 sm:py-10 lg:gap-20 lg:px-0">
         <motion.div
-          className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between"
+          className="flex flex-wrap items-center justify-between gap-3"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
         >
-          <div className="flex w-full flex-1 items-center justify-between gap-3 sm:w-auto sm:justify-start">
+          <div className="flex flex-1 items-center gap-3">
             <LogoMark />
             <span className="sr-only">Krishna portfolio logo</span>
           </div>
@@ -334,7 +334,7 @@ export default function Home() {
 
         <motion.section
           ref={heroPanelRef}
-          className="panel relative overflow-hidden p-6 sm:p-8 lg:p-10"
+          className="panel panel-solid relative overflow-hidden p-4 sm:p-8 lg:p-10"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
@@ -344,7 +344,7 @@ export default function Home() {
         >
           <Aurora />
           <div
-            className="pointer-events-none absolute inset-0 opacity-70"
+            className="pointer-events-none absolute inset-0 opacity-40 sm:opacity-70"
             aria-hidden
             style={{
               background:
@@ -374,9 +374,9 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
-          <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
-            <div className="flex flex-col gap-6 sm:gap-8">
-              <div className="space-y-5 sm:space-y-6">
+          <div className="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
+            <div className="flex min-w-0 flex-col gap-5 sm:gap-8">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="space-y-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.45em] text-slate-500 dark:text-slate-300">
                     {hero.role}
@@ -384,25 +384,23 @@ export default function Home() {
                   <p className="text-[11px] uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500">
                     Portfolio ©2025
                   </p>
-                  <h1 className="text-[clamp(2.8rem,5vw,4.8rem)] font-semibold leading-[1.05] text-slate-900 dark:text-white">
+                  <h1 className="text-[clamp(2.25rem,6vw,4.6rem)] font-semibold leading-[1.08] text-slate-900 dark:text-white">
                     {hero.name}
-                    <span className="gradient-text block text-[clamp(2.2rem,4.4vw,3.8rem)]">
+                    <span className="gradient-text block text-[clamp(1.9rem,4.8vw,3.6rem)]">
                       designs trust-first systems.
                     </span>
                   </h1>
                 </div>
-                <p className="max-w-3xl text-base leading-relaxed text-slate-900 dark:text-slate-200 sm:text-lg">
+                <p className="max-w-2xl text-[0.95rem] leading-relaxed text-slate-900 dark:text-slate-200 sm:text-lg">
                   {hero.summary}
                 </p>
                 <div className="mantra-loop">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.55em] text-slate-500 dark:text-slate-300">
                     Studio mantra
                   </span>
-                  <div className="flex flex-wrap items-baseline gap-3">
-                    <span className="text-base uppercase tracking-[0.45em] text-slate-600 dark:text-slate-400">
-                      Make it
-                    </span>
-                    <div className="relative h-9 overflow-hidden">
+                  <div className="flex flex-col gap-2 rounded-3xl border border-white/60 bg-white/80 p-3 text-sm uppercase tracking-[0.35em] text-slate-600 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300 sm:flex-row sm:items-baseline sm:gap-3 sm:bg-transparent sm:p-0 sm:text-base sm:tracking-[0.45em] sm:shadow-none">
+                    <span>Make it</span>
+                    <div className="relative h-9 min-w-[8ch] overflow-hidden sm:h-10">
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={craftMantras[mantraIndex]}
@@ -410,7 +408,7 @@ export default function Home() {
                           animate={{ y: 0 }}
                           exit={{ y: "-100%" }}
                           transition={{ duration: 0.6, ease: [0.6, 0, 0.4, 1] }}
-                          className="gradient-text block text-3xl font-semibold"
+                          className="gradient-text block text-xl font-semibold sm:text-3xl"
                         >
                           {craftMantras[mantraIndex]}
                         </motion.span>
@@ -418,7 +416,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+                <div className="grid gap-2 sm:grid-cols-3 sm:gap-4">
                   {editorialBursts.map((burst) => (
                     <div key={burst.label} className="glass-tile p-3 sm:p-4">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.45em] text-slate-500 dark:text-slate-400">
@@ -431,10 +429,10 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
                 <Link
                   href={hero.primaryAction.href}
-                  className="pill-link bg-slate-900 text-white border-transparent hover:bg-slate-800 dark:bg-white dark:text-slate-950"
+                  className="pill-link bg-white text-slate-900 border-slate-900/20 hover:bg-white/95 dark:border-transparent dark:bg-slate-900 dark:text-white"
                 >
                   {hero.primaryAction.label}
                 </Link>
@@ -446,9 +444,9 @@ export default function Home() {
                 </Link>
               </div>
               <RollingList items={capabilityPills} speed="slow" />
-              <div className="grid gap-3 md:grid-cols-3 md:gap-4">
+              <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
                 {overviewCards.map((card) => (
-                  <div key={card.label} className="glass-tile p-3 sm:p-4">
+                  <div key={card.label} className="glass-tile p-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600 dark:text-slate-300">
                       {card.label}
                     </p>
@@ -460,8 +458,8 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="space-y-4 sm:space-y-5">
-              <div className="glass-tile p-5 sm:p-6">
+            <div className="space-y-4 sm:space-y-5 lg:min-w-0">
+              <div className="glass-tile min-w-0 p-5 sm:p-6">
                 <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600 dark:text-slate-300">
                   <span>Live signals</span>
                   <span>Studio board</span>
@@ -488,7 +486,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="glass-tile p-5 sm:p-6">
+              <div className="glass-tile min-w-0 p-5 sm:p-6">
                 <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600 dark:text-slate-300">
                   <span>Designer moodboard</span>
                   <span>Signals</span>
